@@ -1,0 +1,35 @@
+body {
+	font-family: sans-serif;
+	background-color: #ffffff;
+	color: #222222;
+	margin: 4.0em;
+	margin-left: 10.0em;
+	margin-right: 10.0em;
+	line-height: 1.5em;
+}
+
+h1 {
+	margin-left: 1.0em;
+	font-size: 3.0em;
+}
+
+hr {
+	background-color: #000000;
+	height: 2px;
+	border: 0;
+}
+
+a {
+	font-weight: bold;
+	font-size: 1.1em;
+	background-color: #00bfff;
+	color: #ffffff;
+	text-decoration: none;
+	padding-left: 0.1em;
+	padding-right: 0.1em;
+}
+
+a:hover {
+	background-color: #222222;
+	color: #ffffff;
+}

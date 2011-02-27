@@ -1,0 +1,58 @@
+Wi! wiki
+========
+Ultra-minimalistic wiki written in KSH (*Korn Shell*). Very small, just a single CGI script.
+All the content of the wiki is stored in a mercurial repository, each article is
+saved in a separated file. It is so simple that it doesn't have any user management
+(*KISS philosophy*).
+
+### Features
++ Dead-simple
++ File-based using Mercurial
++ Content optionally generated statically
++ Markdown syntax
+
+### Dependencies
++ KSH
++ Web server with CGI support
++ Mercurial revision control
+
+### Screenshot
+Look at the included file `imgs/wi-screenshot.png`.
+
+### Install
+Just copy `wi.ksh` to your CGIs directory. You also need to create a Mercurial
+repository with read/write permission for the CGI script. Copy `wi.css` to the
+repository.
+
+Look at the top of the CGI to customize the two variables with the location of
+the wiki repository and the CGI URL path (they are used from the root of the
+URL web server).
+
+### Usage
+Apart from the CGI functionality, you can run the next command to create a
+static version of the content:
+
+		wi.ksh --generate-static
+
+This is useful for a cron job to replicate statically the content of the wiki
+every day.
+
+*It's highly recommended to run the CGI as a dedicated user for such task, as the
+shell script CGIs are always in danger of exploitation.*
+
+If you find unpleasant the idea of a public wiki with no user management, just
+put the wiki in some hidden place and show to the public the static version.
+
+Note: the **Undo** button is just a **rollback** on the Mercurial repository.
+
+### Project status
+Version 1.0 finished.
+
+### License
+The program is under the `GPLv3`.
+
+### Feedback
+Feel free to send me an email if you have any question about the code, you found
+a bug or you have a feature request. Send it to:
+
+                jimenezrick@gmail.com
