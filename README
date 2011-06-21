@@ -1,7 +1,7 @@
  Wi! wiki
 ==========
 
-Ultra-minimalistic wiki written in KSH (*Korn Shell*). Very small, just
+Ultra-minimalistic wiki written in ksh (Korn Shell). Very small, just
 a single CGI script.  All the content of the wiki is stored in a
 mercurial repository, each article is saved in a separated file. It is
 so simple that it doesn't have any user management (*KISS philosophy*).
@@ -19,7 +19,7 @@ so simple that it doesn't have any user management (*KISS philosophy*).
  Dependencies
 --------------
 
-- KSH
+- ksh
 - Web server with CGI support
 - Mercurial revision control
 
