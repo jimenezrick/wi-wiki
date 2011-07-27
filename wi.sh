@@ -1,6 +1,6 @@
-#!/bin/ksh
+#!/bin/bash
 
-# Copyright (C) 2010 Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
+# Copyright (C) 2010-2011 Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,12 +52,12 @@ function show_pages_list
 {
 	typeset file
 	typeset page
-	echo '[&mdash; index &mdash;]('$CGI_URL'/wi.ksh?cmd=get&page=index)'
-	echo '[&mdash; new &mdash;]('$CGI_URL'/wi.ksh?cmd=get&page=new)'
+	echo '[&mdash; Index &mdash;]('$CGI_URL'/wi.ksh?cmd=get&page=Index)'
+	echo '[&mdash; New &mdash;]('$CGI_URL'/wi.ksh?cmd=get&page=New)'
 	for file in $(cd $DOCUMENT_ROOT$WIKI_PATH; ls *.markdown)
 	do
 		page=${file%%.markdown}
-		if [[ $page != index ]] && [[ $page != new ]]
+		if [[ $page != Index ]] && [[ $page != New ]]
 		then
 			echo '['$page']('$CGI_URL'/wi.ksh?cmd=get&page='$page')'
 		fi
@@ -68,11 +68,11 @@ function show_static_pages_list
 {
 	typeset file
 	typeset page
-	echo '[&mdash; index &mdash;]('$WIKI_PATH'/index.html)'
+	echo '[&mdash; Index &mdash;]('$WIKI_PATH'/Index.html)'
 	for file in *.markdown
 	do
 		page=${file%%.markdown}
-		if [[ $page != index ]] && [[ $page != new ]]
+		if [[ $page != Index ]] && [[ $page != New ]]
 		then
 			echo '['$page']('$WIKI_PATH'/'$page.html')'
 		fi
@@ -154,13 +154,13 @@ function show_page
 	case $1 in
 		GET+get)
 			page=$(get_value "$QUERY_STRING" page)
-			if [[ $page == new ]]
+			if [[ $page == New ]]
 			then
 				show_pages_list
 				show_create_page
 			else
 				show_pages_list
-				show_page_content ${page:-index} 'cat $DOCUMENT_ROOT$WIKI_PATH/$1.markdown'
+				show_page_content ${page:-Index} 'cat $DOCUMENT_ROOT$WIKI_PATH/$1.markdown'
 			fi
 			;;
 		GET+search)
@@ -197,7 +197,7 @@ function show_page
 			page=$(get_value "$2" page)
 			delete_page $page
 			show_pages_list
-			show_page_content index 'cat $DOCUMENT_ROOT$WIKI_PATH/index.markdown'
+			show_page_content Index 'cat $DOCUMENT_ROOT$WIKI_PATH/Index.markdown'
 			;;
 		POST+publish)
 			page=$(get_value "$2" page)
