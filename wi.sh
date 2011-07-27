@@ -322,6 +322,7 @@ function generate_static
 		cat FOOTER >>$file_html
 		echo $file_html generated
 	done
+	ln -sf Index.html index.html
 }
 
 if [[ $# == 0 ]]
