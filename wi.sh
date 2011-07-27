@@ -52,14 +52,14 @@ function show_pages_list
 {
 	typeset file
 	typeset page
-	echo '[&mdash; Index &mdash;]('$CGI_URL'/wi.ksh?cmd=get&page=Index)'
-	echo '[&mdash; New &mdash;]('$CGI_URL'/wi.ksh?cmd=get&page=New)'
+	echo '[&mdash; Index &mdash;]('$CGI_URL'/wi.sh?cmd=get&page=Index)'
+	echo '[&mdash; New &mdash;]('$CGI_URL'/wi.sh?cmd=get&page=New)'
 	for file in $(cd $DOCUMENT_ROOT$WIKI_PATH; ls *.markdown)
 	do
 		page=${file%%.markdown}
 		if [[ $page != Index ]] && [[ $page != New ]]
 		then
-			echo '['$page']('$CGI_URL'/wi.ksh?cmd=get&page='$page')'
+			echo '['$page']('$CGI_URL'/wi.sh?cmd=get&page='$page')'
 		fi
 	done
 }
@@ -82,7 +82,7 @@ function show_static_pages_list
 function show_search
 {
 	print_rule
-	echo '<form action="/cgi-bin/wi.ksh" method="get">'
+	echo '<form action="/cgi-bin/wi.sh" method="get">'
 	echo '<input type="hidden" name="cmd" value="search">'
 	echo '<input type="text" name="pattern" size="80" maxlength="100">'
 	echo '<input type="submit" value="Search"></form>'
@@ -95,7 +95,7 @@ function show_search_results
 	echo '#' Search: $1
 	(cd $DOCUMENT_ROOT$WIKI_PATH; egrep -i "$1" *.markdown) | while read result
 	do
-		echo "$result" | sed 's/\(.*\)\..*:/[\1](\/cgi-bin\/wi.ksh?cmd=get\&page=\1): /g'
+		echo "$result" | sed 's/\(.*\)\..*:/[\1](\/cgi-bin\/wi.sh?cmd=get\&page=\1): /g'
 		echo
 	done
 }
@@ -125,7 +125,7 @@ function show_page_editor
 {
 	print_rule
 	echo '#' $1
-	echo '<form action="/cgi-bin/wi.ksh" method="post">'
+	echo '<form action="/cgi-bin/wi.sh" method="post">'
 	echo '<input type="hidden" name="cmd" value="publish">'
 	echo '<input type="hidden" name="page" value="'$1'">'
 	echo '<textarea name="content" cols="100" rows="40">'
@@ -138,7 +138,7 @@ function show_create_page
 {
 	print_rule
 	echo '#' Create new page:
-	echo '<form action="/cgi-bin/wi.ksh" method="post">'
+	echo '<form action="/cgi-bin/wi.sh" method="post">'
 	echo '<input type="hidden" name="cmd" value="create">'
 	echo '<input type="text" name="page" size="20" maxlength="30">'
 	echo '<input type="submit" value="Create"></form>'
@@ -222,32 +222,32 @@ function show_page
 function show_page_controls
 {
 	print_rule
-	echo '<form action="/cgi-bin/wi.ksh" method="post">'
+	echo '<form action="/cgi-bin/wi.sh" method="post">'
 	echo '<input type="hidden" name="cmd" value="add">'
 	echo '<input type="hidden" name="page" value="'$1'">'
 	echo '<input type="text" name="line" size="80" maxlength="200">'
 	echo '<input type="submit" value="Add"></form>'
 	echo
 	echo '<table><tr><td>'
-	echo '<form action="/cgi-bin/wi.ksh" method="get">'
+	echo '<form action="/cgi-bin/wi.sh" method="get">'
 	echo '<input type="hidden" name="cmd" value="edit">'
 	echo '<input type="hidden" name="page" value="'$1'">'
 	echo '<input type="submit" value="Edit"></form>'
 	echo '</td>'
 	echo '<td>'
-	echo '<form action="/cgi-bin/wi.ksh" method="get">'
+	echo '<form action="/cgi-bin/wi.sh" method="get">'
 	echo '<input type="hidden" name="cmd" value="history">'
 	echo '<input type="hidden" name="page" value="'$1'">'
 	echo '<input type="submit" value="History"></form>'
 	echo '</td>'
 	echo '<td>'
-	echo '<form action="/cgi-bin/wi.ksh" method="post">'
+	echo '<form action="/cgi-bin/wi.sh" method="post">'
 	echo '<input type="hidden" name="cmd" value="undo">'
 	echo '<input type="hidden" name="page" value="'$1'">'
 	echo '<input type="submit" value="Undo"></form>'
 	echo '</td>'
 	echo '<td>'
-	echo '<form action="/cgi-bin/wi.ksh" method="post">'
+	echo '<form action="/cgi-bin/wi.sh" method="post">'
 	echo '<input type="hidden" name="cmd" value="delete">'
 	echo '<input type="hidden" name="page" value="'$1'">'
 	echo '<input type="submit" value="Delete"></form>'
@@ -332,6 +332,6 @@ elif [[ $1 == --generate-static ]]
 then
 	generate_static
 else
-	echo 'Usage: wi.ksh --generate-static (or run as CGI)'
+	echo 'Usage: wi.sh --generate-static (or run as CGI)'
 	exit 1
 fi
