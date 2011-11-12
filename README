@@ -36,6 +36,11 @@ Look at the top of wi.sh to customize three variables: Markdown program
 name, location of the wiki repository and the CGI URL path (the last two
 are relative paths to the web server root).
 
+Could be a good idea to create an URL alias in your web server like
+this:
+
+	http://host.com/cgi-bin/wi.sh -> http://host.com/wiki
+
 
  Usage
 -------
