@@ -1,17 +1,17 @@
- Wi! wiki
-==========
+  Wi! wiki
+============
 
 Ultra-minimalistic wiki written in Bash. Very small, just a single CGI
-script.  All the content of the wiki is stored in a Mercurial
-repository, each article is saved in a separated file. It is so simple
-that it doesn't have any user management (*KISS philosophy*).
+script.  All the content of the wiki is stored in a Git repository, each
+article is saved as a separated text file in Markdown syntax. It is so
+simple that it doesn't have any user management (KISS philosophy).
 
 
  Features
 ----------
 
 - Dead-simple
-- File-based using Mercurial
+- File-based using a Git repository
 - Content optionally generated statically
 - Markdown syntax
 
@@ -20,46 +20,48 @@ that it doesn't have any user management (*KISS philosophy*).
 --------------
 
 - Bash
+- Git
+- Markdown-to-HTML converter like: markdown, python-markdown, ...
 - Web server with CGI support
-- Mercurial revision control
 
 
  Install
 ---------
 
-Just copy wi.sh to your CGIs directory. You also need to create a Mercurial
-repository with read/write permission for the CGI script. Copy wi.css to the
-repository.
+Just copy wi.sh to your CGIs directory. You also need to create a Git
+repository with read/write permission for the CGI script. Also copy
+wi.css to that repository.
 
-Look at the top of the CGI to customize the two variables with the location of
-the wiki repository and the CGI URL path (they are used from the root of the
-URL web server).
+Look at the top of wi.sh to customize three variables: Markdown program
+name, location of the wiki repository and the CGI URL path (the last two
+are relative paths to the web server root).
 
 
  Usage
 -------
 
-Apart from the CGI functionality, you can run the next command to create a
-static version of the content:
+Apart from the CGI functionality, you can run the next command to create
+a static version of the wiki content:
 
 	wi.sh --generate-static
 
-This is useful for a cron job to replicate statically the content of the wiki
-every day.
+This is useful for a cron job to replicate statically the content of the
+wiki every day.
 
-*It's highly recommended to run the CGI as a dedicated user for such task, as the
-shell script CGIs are always in danger of exploitation.*
+It's highly recommended to run the CGI as a dedicated user for such
+task, as the shell script CGIs are always in danger of exploitation.
 
-If you find unpleasant the idea of a public wiki with no user management, just
-put the wiki in some hidden place and show to the public the static version.
+If you find unpleasant the idea of a public wiki with no user
+management, just put the wiki in some hidden place and show to the
+public the static version.
 
-Note: the **Undo** button is just a **rollback** on the Mercurial repository.
+Note: the `Undo' button is just a `git reset HEAD^' on the repository.
 
 
  Project status
 ----------------
 
-Version 1.1 finished.
+Version 1.2 finished.
 
 
  License
@@ -71,7 +73,7 @@ The program is under the GPLv3.
  Feedback
 ----------
 
-Feel free to send me an email if you have any question about the code, you found
-a bug or you have a feature request. Send it to:
+Feel free to send me an email if you have any question about the code,
+you found a bug or you have a feature request. Send it to:
 
 	jimenezrick@gmail.com
