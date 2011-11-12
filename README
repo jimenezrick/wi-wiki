@@ -28,9 +28,9 @@ simple that it doesn't have any user management (KISS philosophy).
  Install
 ---------
 
-Just copy wi.sh to your CGIs directory. You also need to create a Git
-repository with read/write permission for the CGI script. Also copy
-wi.css to that repository.
+Create a Git repository with read/write permission for the CGI script
+and accesible by the web server, then copy all the Wi! wiki files to
+that repository. Symlink or copy wi.sh to your CGIs directory.
 
 Look at the top of wi.sh to customize three variables: Markdown program
 name, location of the wiki repository and the CGI URL path (the last two
