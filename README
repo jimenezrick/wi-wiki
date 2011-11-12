@@ -32,6 +32,10 @@ Create a Git repository with read/write permission for the CGI script
 and accesible by the web server, then copy all the Wi! wiki files to
 that repository. Symlink or copy wi.sh to your CGIs directory.
 
+If you want, you can reuse the Wi! wiki source code repository for the
+wiki content, but maybe is a good idea to create a new branch `wiki' to
+keep it well organized.
+
 Look at the top of wi.sh to customize three variables: Markdown program
 name, location of the wiki repository and the CGI URL path (the last two
 are relative paths to the web server root).
@@ -60,7 +64,9 @@ If you find unpleasant the idea of a public wiki with no user
 management, just put the wiki in some hidden place and show to the
 public the static version.
 
-Note: the `Undo' button is just a `git reset HEAD^' on the repository.
+Note: the `Undo' button is just a `git reset --hard HEAD^' on the
+      repository, so be careful because it is going to destroy commits
+      one by one.
 
 
  Project status
