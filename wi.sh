@@ -257,28 +257,28 @@ function show_page_controls
 
 function create_page
 {
-	(cd $DOCUMENT_ROOT$WIKI_PATH; touch $1.markdown; hg add $1.markdown; hg commit -m 'wi: create page') >/dev/null
+	(cd $DOCUMENT_ROOT$WIKI_PATH; touch $1.markdown; git add $1.markdown; git commit -m 'Wi!: create page') >/dev/null
 }
 
 function publish_content
 {
-	(cd $DOCUMENT_ROOT$WIKI_PATH; echo "$2" >$1.markdown; hg commit -m 'wi: publish content') >/dev/null
+	(cd $DOCUMENT_ROOT$WIKI_PATH; echo "$2" >$1.markdown; git add $1.markdown; git commit -m 'Wi!: publish content') >/dev/null
 }
 
 function undo_change
 {
-	(cd $DOCUMENT_ROOT$WIKI_PATH; hg rollback; hg update -C) >/dev/null
+	(cd $DOCUMENT_ROOT$WIKI_PATH; git reset HEAD^) >/dev/null
 }
 
 function add_line
 {
-	(cd $DOCUMENT_ROOT$WIKI_PATH; echo -e "\n$2\n" >>$1.markdown; hg commit -m 'wi: add line') >/dev/null
+	(cd $DOCUMENT_ROOT$WIKI_PATH; echo -e "\n$2\n" >>$1.markdown; git add $1.markdown; git commit -m 'Wi!: add line') >/dev/null
 }
 
 function print_history
 {
 	typeset line
-	(cd $DOCUMENT_ROOT$WIKI_PATH; hg history -p -l 4 $1.markdown) | while read line
+	(cd $DOCUMENT_ROOT$WIKI_PATH; git log -p -n 10 $1.markdown) | while read line
 	do
 		echo -e "\t$line"
 	done
@@ -286,7 +286,7 @@ function print_history
 
 function delete_page
 {
-	(cd $DOCUMENT_ROOT$WIKI_PATH; hg remove $1.markdown; hg commit -m 'wi: delete file') >/dev/null
+	(cd $DOCUMENT_ROOT$WIKI_PATH; git rm $1.markdown; git commit -m 'Wi!: delete page') >/dev/null
 }
 
 function run_CGI
