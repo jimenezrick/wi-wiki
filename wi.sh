@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+MARKDOWN_BIN=markdown
 WIKI_PATH=/wiki
 CGI_URL=/cgi-bin
 
@@ -303,7 +304,7 @@ function run_CGI
 		read query
 		cmd=$(get_value "$query" cmd)
 	fi
-	show_page $REQUEST_METHOD+$cmd "$query" | markdown
+	show_page $REQUEST_METHOD+$cmd "$query" | $MARKDOWN_BIN
 	cat $DOCUMENT_ROOT$WIKI_PATH/FOOTER
 }
 
@@ -317,8 +318,8 @@ function generate_static
 		page=${file_markdown%%.markdown}
 		file_html=$page.html
 		cat HEADER >$file_html
-		show_static_pages_list | markdown >>$file_html
-		show_static_page_content $page | markdown >>$file_html
+		show_static_pages_list | $MARKDOWN_BIN >>$file_html
+		show_static_page_content $page | $MARKDOWN_BIN >>$file_html
 		cat FOOTER >>$file_html
 		echo $file_html generated
 	done
