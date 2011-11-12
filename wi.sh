@@ -267,7 +267,7 @@ function publish_content
 
 function undo_change
 {
-	(cd $DOCUMENT_ROOT$WIKI_PATH; git reset HEAD^) >/dev/null
+	(cd $DOCUMENT_ROOT$WIKI_PATH; git reset --hard HEAD^) >/dev/null
 }
 
 function add_line
